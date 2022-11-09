@@ -10,7 +10,11 @@ packages = [{include = "airbnb_backend"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 Django = "^4.1.1"
+black = "^22.10.0"
 
+
+[tool.poetry.group.dev.dependencies]
+black = {version = "^22.10.0", allow-prereleases = true}
 
 [build-system]
 requires = ["poetry-core"]
