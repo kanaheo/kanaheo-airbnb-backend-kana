@@ -10,6 +10,7 @@ class Room(CommonModel):
         PRIVATE_ROOM = ("private_room", "Private Room")
         SHARED_ROOM = ("shared_room", "Shared Room")
     
+    name = models.CharField(max_length=180, default="")
     country = models.CharField(max_length=50, default="korea")
     city = models.CharField(max_length=80, default="seoul")
     price = models.PositiveIntegerField()
@@ -21,6 +22,9 @@ class Room(CommonModel):
     kind = models.CharField(max_length=20, choices=RoomKindChoices.choices)
     owner = models.ForeignKey("users.User", on_delete=models.CASCADE)
     amenities = models.ManyToManyField("rooms.Amenity")
+    
+    def __str__(self) -> str:
+        return self.name
 
 
 class Amenity(CommonModel):
@@ -33,3 +37,9 @@ class Amenity(CommonModel):
         null=True, # 이건 DB가 null가능한거
         blank=True # 이건 장고 어드민 패널에서 빈값이 가능하게
     )
+    
+    def __str__(self) -> str:
+        return self.name
+    
+    class Meta:
+        verbose_name_plural = "Amenities"
