@@ -34,6 +34,8 @@ class RoomAdmin(admin.ModelAdmin):
     )
     
     search_fields = (
+        "name",
+        "^price",
         "^owner__username",
     )
     
