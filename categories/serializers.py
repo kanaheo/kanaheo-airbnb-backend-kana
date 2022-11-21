@@ -17,6 +17,12 @@ class CategorySerializer(serializers.Serializer):
         return Category.objects.create(
             **validated_data
         )
+        
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get("name", instance.name)
+        instance.kind = validated_data.get("kind", instance.kind)
+        instance.save()
+        return instance
 
 # **validated_data 요건 밑에처럼 해줌!
 # {
