@@ -20,10 +20,6 @@ class RoomDetailSerializer(ModelSerializer):
     class Meta:
         model = Room
         fields = "__all__"
-    
-    # def create(self, validated_data):   # test 
-    #     print(validated_data)
-    #     return
         
 
 class RoomListSerializer(ModelSerializer):
