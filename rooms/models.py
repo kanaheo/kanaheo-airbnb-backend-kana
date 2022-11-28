@@ -47,7 +47,7 @@ class Room(CommonModel):
     def rating(room):
         count = room.reviews.count()    # reviews모델에서 related_name을 reviews로 했기 때문에 이렇게 불러 올 수 있다.
         if count == 0:
-            return "No Reviews"
+            return 0
         else:
             total_rating = 0
             for review in room.reviews.all().values("rating"):    # 우리는 reviews에서 점수만 가지고 오면 되니까 이렇게 가지고 오는게 효과적임 ! 
