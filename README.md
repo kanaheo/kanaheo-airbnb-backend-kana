@@ -17,8 +17,8 @@ GET /rooms/1/amenities
 GET /rooms/1/reviews  
 GET POST /amenities  
 GET PUT DELETE /amenities/1  
-GET POST /rooms/1/bookings  
-GET PUT DELETE /rooms/1/bookings/2
+POST /rooms/1/photos  
+DELETE /rooms/1/photos/1
 
 ### Experiences
 
