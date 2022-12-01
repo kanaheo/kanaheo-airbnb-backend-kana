@@ -18,7 +18,8 @@ GET POST /rooms/1/reviews
 GET POST /amenities  
 GET PUT DELETE /amenities/1  
 POST /rooms/1/photos  
-DELETE /rooms/1/photos/1
+DELETE /rooms/1/photos/1  
+GET POST /rooms/1/bookings
 
 ### Wishlists
 
