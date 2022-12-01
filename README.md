@@ -23,7 +23,8 @@ DELETE /rooms/1/photos/1
 ### Wishlists
 
 GET POST /wishlists  
-GET PUT DELETE /wishlists/1
+GET PUT DELETE /wishlists/1  
+PUT /wishlists/1/rooms
 
 ### Experiences
 
