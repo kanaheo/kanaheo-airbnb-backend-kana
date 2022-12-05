@@ -5,7 +5,7 @@ class Photo(CommonModel):
     
     """ Media Definition"""
     
-    file = models.ImageField()
+    file = models.URLField()
     description = models.CharField(max_length=140)
     room = models.ForeignKey(
         "rooms.Room",
@@ -27,7 +27,7 @@ class Photo(CommonModel):
     
 class Viedo(CommonModel):
     
-    file = models.FileField()
+    file = models.URLField()
     # 밑에 ! viedo는 experience에 대해서만 사용함. 그리고 experience는 1개의 viedo만 가질 수 있기 때문에 이렇게 함
     experience = models.OneToOneField(
         "experiences.Experience",
