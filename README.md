@@ -27,6 +27,17 @@ GET POST /wishlists
 GET PUT DELETE /wishlists/1  
 PUT /wishlists/1/rooms
 
+### Users
+
+GET PUT /me  
+POST /users  
+GET /users/@username  
+GET /users/@username/reviews  
+POST /users/change-password  
+POST /users/github  
+POST /users/log-in  
+POST /users/log-out
+
 ### Experiences
 
 GET POST /experiences  
