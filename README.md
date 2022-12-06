@@ -31,9 +31,12 @@ PUT /wishlists/1/rooms
 
 GET PUT /me  
 POST /users  
-POST /users/log-in  
+GET /users/@username  
+GET /users/@username/reviews  
 POST /users/change-password  
-POST /users/github
+POST /users/github  
+POST /users/log-in  
+POST /users/log-out
 
 ### Experiences
 
