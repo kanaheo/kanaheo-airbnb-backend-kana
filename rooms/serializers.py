@@ -47,7 +47,7 @@ class RoomDetailSerializer(ModelSerializer):
 
 class RoomListSerializer(ModelSerializer):
     
-    rating = serializers.SerializerMethodField
+    rating = serializers.SerializerMethodField()
     is_owner = serializers.SerializerMethodField()
     photos = PhotoSerializer(many=True, read_only=True)
     

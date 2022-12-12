@@ -21,7 +21,7 @@ POST /rooms/1/photos
 DELETE /rooms/1/photos/1  
 GET POST /rooms/1/bookings
 
-### Wishlists
+### Wishlists(Room, Experience)
 
 GET POST /wishlists  
 GET PUT DELETE /wishlists/1  
@@ -42,6 +42,7 @@ POST /users/log-out
 
 GET POST /experiences  
 GET PUT DELETE /experiences/1  
+GET POST /experiences/1/reviews  
 GET /experiences/1/perks  
 GET POST /experiences/1/bookings  
 GET PUT DELETE /experiences/1/bookings/2  
