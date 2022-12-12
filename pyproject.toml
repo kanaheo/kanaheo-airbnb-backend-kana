@@ -13,6 +13,8 @@ Django = "^4.1.1"
 black = "^22.10.0"
 Pillow = "^9.3.0"
 djangorestframework = "^3.14.0"
+strawberry-graphql = {extras = ["debug-server"], version = "^0.149.2"}
+strawberry-graphql-django = "^0.8.2"
 
 
 [tool.poetry.group.dev.dependencies]
