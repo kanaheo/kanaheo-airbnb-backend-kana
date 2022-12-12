@@ -31,6 +31,16 @@ class Experience(CommonModel):
         related_name="experiences"
     )
     
+    def rating(experience):
+        count = experience.reviews.count()    # reviews모델에서 related_name을 reviews로 했기 때문에 이렇게 불러 올 수 있다.
+        if count == 0:
+            return 0
+        else:
+            total_rating = 0
+            for review in experience.reviews.all().values("rating"):    # 우리는 reviews에서 점수만 가지고 오면 되니까 이렇게 가지고 오는게 효과적임 ! 
+                total_rating += review['rating']
+            return round(total_rating / count, 2)
+    
     def __str__(self) -> str:
         return self.name
     

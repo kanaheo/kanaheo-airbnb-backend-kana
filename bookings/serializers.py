@@ -2,7 +2,6 @@ from django.utils import timezone
 from rest_framework import serializers
 from .models import Booking
 
-# only create room booking create api serializer
 class CreateRoomBookingSerializer(serializers.ModelSerializer):
     
     check_in = serializers.DateField()  # defulut required value
@@ -42,6 +41,44 @@ class CreateRoomBookingSerializer(serializers.ModelSerializer):
         
         return data
 
+class CreateExperienceBookingSerializer(serializers.ModelSerializer):
+    
+    experience_time_start = serializers.DateTimeField()
+    experience_time_end = serializers.DateTimeField()
+    
+    class Meta:
+        model = Booking
+        fields = (
+            "experience_time_start",
+            "experience_time_end",
+            "guests",
+        )
+
+    def validate_experience_time_start(self, value):
+        now = timezone.localtime(timezone.now())
+        if now > value:
+            raise serializers.ValidationError("Can't book in the past!")
+        else:
+            return value
+        
+    def validate_experience_time_end(self, value):
+        now = timezone.localtime(timezone.now())
+        if now > value:
+            raise serializers.ValidationError("Can't book in the past!")
+        else:
+            return value
+
+    def validate(self, data):
+        if data["experience_time_start"] <= data["experience_time_end"]:
+            raise serializers.ValidationError("Check in should be smaller than experience time end!")
+    
+        if Booking.objects.filter(
+            experience_time_start__lte=data["experience_time_end"],
+            experience_time_end__gte=data["experience_time_start"]
+        ).exists():
+            raise serializers.ValidationError("Those or some of those dates are already bookings!")
+        
+        return data
 
 # 이건 모두가 보는 것
 class PublicBookingSerializer(serializers.ModelSerializer):
@@ -51,6 +88,48 @@ class PublicBookingSerializer(serializers.ModelSerializer):
             "pk",
             "check_in",
             "check_out",
-            "experience_time",
+            "experience_time_start",
+            "experience_time_end",
             "guests",
         )
+        
+# 이건 모두가 보는 것
+class PublicBookingExperienceSerializer(serializers.ModelSerializer):
+    
+    experience_time_start = serializers.DateTimeField()
+    experience_time_end = serializers.DateTimeField()
+    
+    class Meta:
+        model = Booking
+        fields = (
+            "pk",
+            "experience_time_start",
+            "experience_time_end",
+            "guests",
+        )
+    
+    def validate_experience_time_start(self, value):
+        now = timezone.localtime(timezone.now())
+        if now > value:
+            raise serializers.ValidationError("Can't book in the past!")
+        else:
+            return value
+        
+    def validate_experience_time_end(self, value):
+        now = timezone.localtime(timezone.now())
+        if now > value:
+            raise serializers.ValidationError("Can't book in the past!")
+        else:
+            return value
+
+    def validate(self, data):
+        if data["experience_time_start"] <= data["experience_time_end"]:
+            raise serializers.ValidationError("Check in should be smaller than experience time end!")
+    
+        if Booking.objects.filter(
+            experience_time_start__lte=data["experience_time_end"],
+            experience_time_end__gte=data["experience_time_start"]
+        ).exists():
+            raise serializers.ValidationError("Those or some of those dates are already bookings!")
+        
+        return data
