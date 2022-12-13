@@ -67,7 +67,7 @@ class Rooms(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     
     def get(self, request):
-        all_rooms = Room.objects.all()
+        all_rooms = Room.objects.all()[1:3]
         serializer = serializers.RoomListSerializer(
             all_rooms, 
             many=True,
