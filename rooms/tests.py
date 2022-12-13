@@ -1,3 +1,7 @@
-from django.test import TestCase
+from rest_framework.test import APITestCase
 
-# Create your tests here.
+class TestAmenities(APITestCase):
+    
+    def test_two_plus_two(self): # self는 APITestCase를 가르킨다 !
+        
+        self.assertEqual(2+2, 4, "The Math is wrong")
