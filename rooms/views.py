@@ -3,7 +3,7 @@ from django.utils import timezone
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.db import transaction
-from rest_framework.status import HTTP_204_NO_CONTENT
+from rest_framework.status import HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound, NotAuthenticated, ParseError, PermissionDenied
 from .models import Amenity, Room
@@ -27,7 +27,10 @@ class Amenities(APIView):
             amenity = serializer.save()
             return Response(serializers.AmenitySerializer(amenity).data)
         else:
-            return Response(serializer.errors)
+            return Response(
+                serializer.errors,
+                status=HTTP_400_BAD_REQUEST,
+            )
 
 class AmenityDetail(APIView):
     
