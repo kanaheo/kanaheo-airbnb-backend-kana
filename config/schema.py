@@ -11,5 +11,5 @@ class Query(rooms_schema.Query):
 
 schema = strawberry.Schema(
     query=Query,
-    # mutation=Mutation
+    # mutation=Mutation 이건 시간 나면 하자
 )
