@@ -155,6 +155,8 @@ MEDIA_URL = "uploads/"
 
 PAGE_FIVE_SIZE = 5
 
+# 결과적으로 로그인 방식은 밑에처럼 따르되 유저를 반환하면 된다 
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
