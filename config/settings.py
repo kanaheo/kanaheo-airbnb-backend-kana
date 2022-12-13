@@ -153,3 +153,10 @@ MEDIA_URL = "uploads/"
 # CUSTOM & GLOBAL
 
 PAGE_FIVE_SIZE = 5
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "config.authentication.TrustMeBroAuthentication"
+    ]
+}
