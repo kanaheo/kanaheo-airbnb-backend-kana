@@ -1,4 +1,5 @@
 import jwt
+import requests
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.response import Response
@@ -132,3 +133,50 @@ class JWTLogIn(APIView):
             return Response({"token": token})
         else:
             return Response({"error": "wrong password"})
+
+class GithubLogIn(APIView):
+    
+    def post(self, request):
+        try:
+            code = request.data.get("code") # 프론트에서 보내준 code로 access_token을 구해와야한다 !! 
+            access_token = requests.post(
+                f"https://github.com/login/oauth/access_token?code={code}&client_id=af7a7fd83e41d7e7b1de&client_secret={settings.GH_SECRET}",
+                headers={"Accept": "application/json"},
+            )
+            access_token = access_token.json().get("access_token")  # 구해왔스 ! 그 담에 우린 access_token 이걸 가지고 github api와 대화가 가능하게 됐다 ! 즉 밑에서 user획득 가능함
+            # 밑에는 기본적인 user data ( not include email)
+            user_data = requests.get(
+                "https://api.github.com/user",
+                headers={
+                    "Authorization": f"Bearer {access_token}",
+                    "Accept": "application/json",
+                },
+            )
+            user_data = user_data.json()
+            # 위에서 email이 없었으니 밑에서 불러오자 ! 
+            user_emails = requests.get(
+                "https://api.github.com/user/emails",
+                headers={
+                    "Authorization": f"Bearer {access_token}",
+                    "Accept": "application/json",
+                },
+            )
+            user_emails = user_emails.json()
+            
+            try:
+                user = User.objects.get(email=user_emails[0]["email"])
+                login(request, user)
+                return Response(status=status.HTTP_200_OK)
+            except User.DoesNotExist:
+                user = User.objects.create(
+                    username=user_data.get("login"),
+                    email=user_emails[0]["email"],
+                    name=user_data.get("name"),
+                    avatar=user_data.get("avatar_url"),
+                )
+                user.set_unusable_password()    # github로그인이니까 No password!
+                user.save()
+                login(request, user)
+                return Response(status=status.HTTP_200_OK)
+        except Exception:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
