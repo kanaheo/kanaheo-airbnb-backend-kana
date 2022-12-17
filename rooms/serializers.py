@@ -34,24 +34,21 @@ class RoomDetailSerializer(ModelSerializer):
     
     def get_is_owner(self, room):
         request = self.context["request"]
-        
-        try:
-            if request:
-                return room.owner == request.user
-        except:
+        if request.user.is_authenticated:
+            return room.owner == request.user
+        else:
             return False
     
     def get_is_liked(self, room):
         request = self.context["request"]
         # 1차적으로 유저가 가지고 있는 Wishlist를 filter
         # 2차적으로 가지고 있는 wishlist에서 room이 있는지 찾기 그러면 그건 「좋아요」기능 만들기임 !
-        try:
-            if request:
-                return Wishlist.objects.filter(
-                    user=request.user,
-                    rooms__id=room.pk
-                ).exists()
-        except:
+        if request.user.is_authenticated:
+            return Wishlist.objects.filter(
+                user=request.user,
+                rooms__id=room.pk
+            ).exists()
+        else:
             return False
 
 class RoomListSerializer(ModelSerializer):
