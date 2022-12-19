@@ -16,41 +16,45 @@ class AmenitySerializer(ModelSerializer):
             "description"
         )
 
-class RoomDetailSerializer(ModelSerializer):
+class RoomDetailSerializer(serializers.ModelSerializer):
     
     owner = TinyUserSerializer(read_only=True)
-    amenities = AmenitySerializer(many=True, read_only=True)
-    category = CategorySerializer(read_only=True)
+    amenities = AmenitySerializer(
+        read_only=True,
+        many=True,
+    )
+    category = CategorySerializer(
+        read_only=True,
+    )
     rating = serializers.SerializerMethodField()
     is_owner = serializers.SerializerMethodField()
     is_liked = serializers.SerializerMethodField()
     photos = PhotoSerializer(many=True, read_only=True)
-    
+
     class Meta:
         model = Room
         fields = "__all__"
-        
+
     def get_rating(self, room):
         return room.rating()
-    
+
     def get_is_owner(self, room):
-        request = self.context["request"]
-        if request.user.is_authenticated:
+        request = self.context.get("request")
+        if request:
             return room.owner == request.user
-        else:
-            return False
-    
+        return False
+
     def get_is_liked(self, room):
-        request = self.context["request"]
+        request = self.context.get("request")
         # 1차적으로 유저가 가지고 있는 Wishlist를 filter
         # 2차적으로 가지고 있는 wishlist에서 room이 있는지 찾기 그러면 그건 「좋아요」기능 만들기임 !
-        if request.user.is_authenticated:
-            return Wishlist.objects.filter(
-                user=request.user,
-                rooms__id=room.pk
-            ).exists()
-        else:
-            return False
+        if request:
+            if request.user.is_authenticated:
+                return Wishlist.objects.filter(
+                    user=request.user,
+                    rooms__pk=room.pk,
+                ).exists()
+        return False
 
 class RoomListSerializer(ModelSerializer):
     
