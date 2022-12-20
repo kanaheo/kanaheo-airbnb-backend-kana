@@ -30,7 +30,7 @@ tests = ["mypy (>=0.800)", "pytest", "pytest-asyncio"]
 name = "black"
 version = "22.10.0"
 description = "The uncompromising code formatter."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -237,7 +237,7 @@ python-versions = "*"
 name = "pathspec"
 version = "0.10.1"
 description = "Utility library for gitignore style pattern matching of file paths."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -245,7 +245,7 @@ python-versions = ">=3.7"
 name = "platformdirs"
 version = "2.5.3"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -459,7 +459,7 @@ strawberry-graphql = ">=0.139.0"
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -536,7 +536,7 @@ brotli = ["Brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "cdb917a49d43c3b2e380852f624c28c30127dbbaaee1547c0c75f67aaf6d49d7"
+content-hash = "2d84500e7bc1d62a472d2e613f2cdfe2195fd1e64313f17481f058f5f55e75e9"
 
 [metadata.files]
 anyio = [
