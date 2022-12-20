@@ -536,7 +536,7 @@ brotli = ["Brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "4854d89ce33f32af5a024d7e6e2f407b2d5a95244a4c0416412ad332b23995b9"
+content-hash = "cdb917a49d43c3b2e380852f624c28c30127dbbaaee1547c0c75f67aaf6d49d7"
 
 [metadata.files]
 anyio = [
