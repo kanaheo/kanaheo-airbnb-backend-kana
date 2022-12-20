@@ -20,6 +20,7 @@ GET PUT DELETE /amenities/1
 POST /rooms/1/photos  
 DELETE /rooms/1/photos/1  
 GET POST /rooms/1/bookings
+GET /rooms/1/bookings/check
 
 ### Wishlists(Room, Experience)
 
