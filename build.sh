@@ -4,7 +4,7 @@ set -o errexit
 
 #poetry install
 
-pip install --upgrade
+pip install --upgrade pip
 pippip install --force-reinstall -U setuptools
 
 python manage.py collectstatic --no-input
