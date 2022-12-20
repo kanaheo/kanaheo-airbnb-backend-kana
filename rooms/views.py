@@ -319,7 +319,7 @@ class RoomBookingCheck(APIView):
     
     def get(self, request, pk):
         room = self.get_object(pk)
-        check_in = request.query_params.get("check_in") # url?check_in 있으면 뒤에 check_id의 값만 잘 빼온다
+        check_in = request.query_params.get("check_in") # url?check_in 있으면 뒤에 check_id의 값만 잘 빼온다 
         check_out = request.query_params.get("check_out")
         exists = Booking.objects.filter(  # 특정한 방에 예약이 있는지를 체크해야함 ! 
             room=room,
