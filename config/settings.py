@@ -36,7 +36,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ["localhost",]
+ALLOWED_HOSTS = ["localhost","backend.kknkkm.site/",]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')   # render가 외부로 노출시키는 url을 의미
 # render로 배포를 하면 랜덤 domain을 얻는다 ! 그 domain을 위에 다가 넣어줄것이다 ! 
@@ -204,6 +204,8 @@ if DEBUG:
 else:
     CORS_ALLOWED_ORIGINS = ["https://kkanakana-frontend.onrender.com"]
     CSRF_TRUSTED_ORIGINS = ["https://kkanakana-frontend.onrender.com"]
+    CORS_ALLOWED_ORIGINS = ["https://kknkkm.site/"]
+    CSRF_TRUSTED_ORIGINS = ["https://kknkkm.site/"]
 
 
 CORS_ALLOW_CREDENTIALS = True
