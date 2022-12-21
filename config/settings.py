@@ -204,8 +204,8 @@ if DEBUG:
 else:
     CORS_ALLOWED_ORIGINS = ["https://kkanakana-frontend.onrender.com"]
     CSRF_TRUSTED_ORIGINS = ["https://kkanakana-frontend.onrender.com"]
-    CORS_ALLOWED_ORIGINS = ["https://kknkkm.site/"]
-    CSRF_TRUSTED_ORIGINS = ["https://kknkkm.site/"]
+    CORS_ALLOWED_ORIGINS = ["https://kknkkm.site"]
+    CSRF_TRUSTED_ORIGINS = ["https://kknkkm.site"]
 
 
 CORS_ALLOW_CREDENTIALS = True
