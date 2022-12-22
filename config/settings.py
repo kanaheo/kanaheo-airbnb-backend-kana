@@ -207,6 +207,7 @@ else:
     CORS_ALLOWED_ORIGINS = ["https://kknkkm.site"]
     CSRF_TRUSTED_ORIGINS = ["https://kknkkm.site"]
 
+# secret key = RRRej24SKnxvyjNRu0ZPZnEgap8n9J3m
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -216,8 +217,8 @@ CF_ID = env("CF_ID")
 CF_TOKEN = env("CF_TOKEN")
 
 if not DEBUG:
-    SESSION_COOKIE_DOMAIN = ".kknkkm.site"
-    CSRF_COOKIE_DOMAIN = ".kknkkm.site"
+    SESSION_COOKIE_DOMAIN = ".kkanakana-backend.onrender.com"
+    CSRF_COOKIE_DOMAIN = ".kkanakana-backend.onrender.com"
     sentry_sdk.init(
         dsn="https://5e917a5e48034f80b002be28b8e499a9@o4504360400125952.ingest.sentry.io/4504360406810624",
         integrations=[
