@@ -1,6 +1,6 @@
 databases:
   - name: kkanakana
-    databaseName: kkanakana-db
+    databaseName: kkanakana
     user: kkanakana
     region: singapore
 
