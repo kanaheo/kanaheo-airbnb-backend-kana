@@ -36,7 +36,10 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ["localhost","backend.kknkkm.site/",]
+ALLOWED_HOSTS = [
+    "localhost",
+    "backend.kknkkm.site/",
+]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')   # render가 외부로 노출시키는 url을 의미
 # render로 배포를 하면 랜덤 domain을 얻는다 ! 그 domain을 위에 다가 넣어줄것이다 ! 
@@ -217,8 +220,10 @@ CF_ID = env("CF_ID")
 CF_TOKEN = env("CF_TOKEN")
 
 if not DEBUG:
-    SESSION_COOKIE_DOMAIN = ".kkanakana-backend.onrender.com"
-    CSRF_COOKIE_DOMAIN = ".kkanakana-backend.onrender.com"
+    # SESSION_COOKIE_DOMAIN = ".kkanakana-backend.onrender.com"
+    # CSRF_COOKIE_DOMAIN = ".kkanakana-backend.onrender.com"
+    SESSION_COOKIE_DOMAIN = ".backend.kknkkm.site"
+    CSRF_COOKIE_DOMAIN = ".backend.kknkkm.site"
     sentry_sdk.init(
         dsn="https://5e917a5e48034f80b002be28b8e499a9@o4504360400125952.ingest.sentry.io/4504360406810624",
         integrations=[
