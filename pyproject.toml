@@ -2,9 +2,8 @@
 name = "airbnb-backend"
 version = "0.1.0"
 description = ""
-authors = ["'heokyoungmin' <'stalvede0421@gmail.com'>"]
+authors = ["heokyoungmin <stalvede0421@gmail.com>"]
 license = "MIT"
-readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
