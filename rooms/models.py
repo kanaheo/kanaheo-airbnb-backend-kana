@@ -45,7 +45,7 @@ class Room(CommonModel):
         return self. amenities.count()
     
     def rating(room):
-        count = room.reviews.count()    # reviews모델에서 related_name을 reviews로 했기 때문에 이렇게 불러 올 수 있다 .
+        count = room.reviews.count()    # reviews모델에서 related_name을 reviews로 했기 때문에 이렇게 불러 올 수 있다.
         if count == 0:
             return 0
         else:
