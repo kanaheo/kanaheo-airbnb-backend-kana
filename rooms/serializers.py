@@ -1,24 +1,23 @@
+from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 from .models import Amenity, Room
 from users.serializers import TinyUserSerializer
-from reviews.serializers import ReviewSerializer
 from categories.serializers import CategorySerializer
 from medias.serializers import PhotoSerializer
 from wishlists.models import Wishlist
+from users.models import User
 
-
-class AmenitySerializer(serializers.ModelSerializer):
+class AmenitySerializer(ModelSerializer):
     class Meta:
         model = Amenity
         fields = (
             "pk",
             "name",
-            "description",
+            "description"
         )
 
-
 class RoomDetailSerializer(serializers.ModelSerializer):
-
+    
     owner = TinyUserSerializer(read_only=True)
     amenities = AmenitySerializer(
         read_only=True,
@@ -47,6 +46,8 @@ class RoomDetailSerializer(serializers.ModelSerializer):
 
     def get_is_liked(self, room):
         request = self.context.get("request")
+        # 1차적으로 유저가 가지고 있는 Wishlist를 filter
+        # 2차적으로 가지고 있는 wishlist에서 room이 있는지 찾기 그러면 그건 「좋아요」기능 만들기임 !
         if request:
             if request.user.is_authenticated:
                 return Wishlist.objects.filter(
@@ -55,13 +56,12 @@ class RoomDetailSerializer(serializers.ModelSerializer):
                 ).exists()
         return False
 
-
-class RoomListSerializer(serializers.ModelSerializer):
-
+class RoomListSerializer(ModelSerializer):
+    
     rating = serializers.SerializerMethodField()
     is_owner = serializers.SerializerMethodField()
     photos = PhotoSerializer(many=True, read_only=True)
-
+    
     class Meta:
         model = Room
         fields = (
@@ -72,12 +72,13 @@ class RoomListSerializer(serializers.ModelSerializer):
             "price",
             "rating",
             "is_owner",
-            "photos",
+            "photos"
         )
 
     def get_rating(self, room):
         return room.rating()
-
+    
     def get_is_owner(self, room):
         request = self.context["request"]
         return room.owner == request.user
+
