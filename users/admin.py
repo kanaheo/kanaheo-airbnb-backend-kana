@@ -2,11 +2,12 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import User
 
+
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (
-            "Profile", 
+            "Profile",
             {
                 "fields": (
                     "avatar",
@@ -19,10 +20,11 @@ class CustomUserAdmin(UserAdmin):
                     "language",
                     "currency",
                 ),
+                "classes": ("wide",),
             },
         ),
         (
-            "Permissions", 
+            "Permissions",
             {
                 "fields": (
                     "is_active",
@@ -31,17 +33,16 @@ class CustomUserAdmin(UserAdmin):
                     "groups",
                     "user_permissions",
                 ),
-                "classes": ("collapse", ),
+                "classes": ("collapse",),
             },
         ),
         (
             "Important Dates",
             {
                 "fields": ("last_login", "date_joined"),
-                "classes": ("collapse", ),
+                "classes": ("collapse",),
             },
         ),
     )
-    
+
     list_display = ("username", "email", "name", "is_host")
-    

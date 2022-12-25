@@ -1,9 +1,9 @@
 from django.contrib import admin
 from .models import Booking
 
+
 @admin.register(Booking)
 class Booking(admin.ModelAdmin):
-    
     list_display = (
         "kind",
         "user",
@@ -11,12 +11,7 @@ class Booking(admin.ModelAdmin):
         "experience",
         "check_in",
         "check_out",
-        "experience_time_start",
-        "experience_time_end",
+        "experience_time",
         "guests",
     )
-    
-    list_filter = (
-        "kind",
-    )
-
+    list_filter = ("kind",)

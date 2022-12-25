@@ -8,12 +8,12 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("categories", "0001_initial"),
-        ("experiences", "0001_initial"),
+        ("rooms", "0003_alter_amenity_options"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name="experience",
+            model_name="room",
             name="category",
             field=models.ForeignKey(
                 blank=True,
@@ -21,15 +21,5 @@ class Migration(migrations.Migration):
                 on_delete=django.db.models.deletion.SET_NULL,
                 to="categories.category",
             ),
-        ),
-        migrations.AlterField(
-            model_name="perk",
-            name="details",
-            field=models.CharField(blank=True, default="", max_length=250),
-        ),
-        migrations.AlterField(
-            model_name="perk",
-            name="explanation",
-            field=models.TextField(blank=True, default=""),
         ),
     ]

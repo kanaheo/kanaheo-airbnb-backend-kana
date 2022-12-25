@@ -14,38 +14,28 @@ class Migration(migrations.Migration):
             "0003_alter_experience_category_alter_experience_host_and_more",
         ),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ("reviews", "0001_initial"),
+        ("wishlists", "0002_wishlist_user"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name="review",
-            name="experience",
-            field=models.ForeignKey(
-                blank=True,
-                null=True,
-                on_delete=django.db.models.deletion.CASCADE,
-                related_name="reviews",
-                to="experiences.experience",
+            model_name="wishlist",
+            name="experiences",
+            field=models.ManyToManyField(
+                related_name="wishlists", to="experiences.experience"
             ),
         ),
         migrations.AlterField(
-            model_name="review",
-            name="room",
-            field=models.ForeignKey(
-                blank=True,
-                null=True,
-                on_delete=django.db.models.deletion.CASCADE,
-                related_name="reviews",
-                to="rooms.room",
-            ),
+            model_name="wishlist",
+            name="rooms",
+            field=models.ManyToManyField(related_name="wishlists", to="rooms.room"),
         ),
         migrations.AlterField(
-            model_name="review",
+            model_name="wishlist",
             name="user",
             field=models.ForeignKey(
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name="reviews",
+                related_name="wishlists",
                 to=settings.AUTH_USER_MODEL,
             ),
         ),
