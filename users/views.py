@@ -192,7 +192,7 @@ class KakaoLogIn(APIView):
                 data={
                     "grant_type": "authorization_code",
                     "client_id": "015abcad69e4ee8079188d6742057c3f",
-                    "redirect_uri": "http://127.0.0.1:3000/social/kakao",
+                    "redirect_uri": "https://kknkkm.site/social/kakao",
                     "code": code
                 },
             )
