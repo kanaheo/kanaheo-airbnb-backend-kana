@@ -8,6 +8,7 @@ urlpatterns = [
     path("<int:pk>/amenities", views.RoomAmenities.as_view()),
     path("<int:pk>/photos", views.RoomPhotos.as_view()),
     path("<int:pk>/bookings/check", views.RoomBookingCheck.as_view()),
+    path("<int:pk>/upload/bookings/", views.RoomBookings.as_view()),
     path("amenities/", views.Amenities.as_view()),
     path("amenities/<int:pk>", views.AmenityDetail.as_view()),
     path("make-error", views.make_error)

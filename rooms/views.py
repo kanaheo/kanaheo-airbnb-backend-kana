@@ -307,7 +307,7 @@ class RoomBookings(APIView):
             return Response(serializer.data)
             
         else:
-            return Response(serializer.errors)
+            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 class RoomBookingCheck(APIView):
     
@@ -327,10 +327,14 @@ class RoomBookingCheck(APIView):
             check_out__gte=check_in,
         ).exists()
         
-        print(exists)
-
         if exists:
-            return Response({"ok": False})
+            exists_obj = Booking.objects.filter(  # 특정한 방에 예약이 있는지를 체크해야함 ! 
+                room=room,
+                check_in__lte=check_out,
+                check_out__gte=check_in,
+            )
+            serializer = PublicBookingSerializer(exists_obj, many=True)
+            return Response({"ok": False, "data": serializer.data})
         return Response({"ok": True})
 
 def make_error(request):
