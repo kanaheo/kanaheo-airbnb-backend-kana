@@ -192,7 +192,7 @@ PAGE_FIVE_SIZE = 5
 
 # 결과적으로 로그인 방식은 밑에처럼 따르되 유저를 반환하면 된다
 # 또한 가장 기본적인게 SessionAuthentication이며 다른것들은 특별한 api를 불러오면 토큰이 생성되던 뭐가 되던 한다.
-# 지금은 가장 기본적인 방법으로 진행 중이다.
+# 지금은 가장 기본적인 방법으로 진행 중이다. 
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
